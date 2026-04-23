@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    
+    <title>Technological University Courses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Home.css">
+</head>
+<body><script>
+const form = document.getElementById("contactForm");
+const msg = document.getElementById("msg");
+
+form.addEventListener("submit", function(e){
+e.preventDefault();
+
+if(form.checkValidity()){
+msg.innerHTML = "💌 Message Sent Successfully!";
+msg.style.color = "green";
+form.reset();
+} else {
+msg.innerHTML = "⚠ Please fill all fields!";
+msg.style.color = "red";
+}
+});
+</script>
+
+    <header>
+        <h1>Technological University Courses</h1>
+        <nav>
+            <a href="Home.html">Home</a>
+            |<a href="Login.html">login</a>
+            |<a href="SignUp.html">SignUp</a>
+            |<a href="Contact.html">Contact Us</a>
+
+             
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Book your course now at the university</h2>
+        <p> Offer you best technology and language courses UICC & UCCD </p>
+        <button id="show-centers-btn">Show-Centers</button>
+    </section>
+
+    <section id="centers" class="centers">
+        <h3>Courses Centers</h3>
+
+        <div class="centers-container">
+            <div class="center-card">
+                <img class="center-logo" src="UICC img.jpg" alt="UICC Logo">
+                 <div class="center-info">
+                <h4>UICC Center</h4>
+                <p> A center specializing in technology and programming courses such as Python & Microsoft Office.</p>
+                
+                <a href="UICC.html" class="btn">Show courses</a>
+</div>
+            </div>
+
+            <div class="center-card">
+                 <img class="center-logo" src="UCCD img.jpg" alt="UCCD Logo" >
+                 <div class="center-info">
+                <h4>UCCD Center</h4>
+                <p> A center that focuses on developing skills and languages such as learn English & Soft Skills.</p>
+                <a href="UCCD.html" class="btn">Show courses</a>
+                
+            </div>
+        </div>
+    </section>
+     <footer>
+         جميع الحقوق محفوظة © جامعه بني سويف التكنولوجية
+   
+    </footer>
+
+    <script>
+window.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("show-centers-btn");
+    const centers = document.getElementById("centers");
+
+    btn.addEventListener("click", () => {
+        centers.scrollIntoView({ behavior: "smooth" });
+    });
+});
+</script>
+
+
+</body>
+</html>

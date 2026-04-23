@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UICC & UCCD Course Booking</title>
+ <link rel="stylesheet" href="booking.css">
+</head>
+
+<body>
+
+<div class="header">
+    UICC & UCCD Course Booking System
+</div>
+
+<div class="container">
+
+    <div class="section-title">
+        Book Your Course
+    </div>
+
+    <label>Select Center</label>
+    <select id="center" onchange="changeCourses()">
+        <option value="">Choose Center</option>
+        <option value="UICC">UICC</option>
+        <option value="UCCD">UCCD</option>
+    </select>
+
+    <label>Select Course</label>
+    <select id="course" onchange="changeSchedule()">
+        <option value="">Choose Course</option>
+    </select>
+
+    <label>Select Day</label>
+    <select id="day">
+        <option value="">Choose Day</option>
+    </select>
+
+    <label>Select Time</label>
+    <select id="time">
+        <option value="">Choose Time</option>
+    </select>
+
+    <button onclick="saveBooking()">Confirm Booking</button>
+    <button class="my-bookings" onclick="showBookings()">My Bookings</button>
+
+    <div class="booking-list" id="bookingList"></div>
+
+</div>
+
+<script>
+function changeCourses() {
+    var center = document.getElementById("center").value;
+    var c = document.getElementById("course");
+
+    c.innerHTML = "<option value=''>Choose Course</option>";
+
+    if (center == "UICC") {
+        c.innerHTML += "<option value='Microsoft'>Microsoft Office</option>";
+        c.innerHTML += "<option value='Python'>Python Programming</option>";
+    }
+
+    if (center == "UCCD") {
+        c.innerHTML += "<option value='Soft Skills'>Soft Skills</option>";
+        c.innerHTML += "<option value='English'>Learn English</option>";
+    }
+
+    document.getElementById("day").innerHTML = "<option>Choose Day</option>";
+    document.getElementById("time").innerHTML = "<option>Choose Time</option>";
+}
+
+function changeSchedule() {
+    var course = document.getElementById("course").value;
+    var day = document.getElementById("day");
+    var time = document.getElementById("time");
+
+    day.innerHTML = "<option value=''>Choose Day</option>";
+    time.innerHTML = "<option value=''>Choose Time</option>";
+
+    // UICC — Microsoft
+    if (course == "Microsoft") {
+        day.innerHTML += "<option>Sat & Tue</option>";
+       
+      
+
+        time.innerHTML += "<option>12:00 PM</option>";
+        time.innerHTML += "<option>2:00 PM</option>";
+    }
+
+    // UICC — Python
+    if (course == "Python") {
+        day.innerHTML += "<option>Sat & Thur</option>";
+      
+       
+
+        time.innerHTML += "<option>1:00 PM</option>";
+        time.innerHTML += "<option>10:00 AM</option>";
+    }
+
+    // UCCD — English
+    if (course == "English") {
+        day.innerHTML += "<option>Sun & Wed</option>";
+      
+       
+
+        time.innerHTML += "<option>1:00 PM</option>";
+        time.innerHTML += "<option>9:30 AM</option>";
+    }
+
+    // UCCD — Soft Skills
+    if (course == "Soft Skills") {
+        day.innerHTML += "<option>Mon & Thur</option>";
+      
+      
+
+        time.innerHTML += "<option>10:00 AM</option>";
+        time.innerHTML += "<option>2:00 PM</option>";
+    }
+}
+
+function saveBooking() {
+    var center = document.getElementById("center").value;
+    var course = document.getElementById("course").value;
+    var day = document.getElementById("day").value;
+    var time = document.getElementById("time").value;
+
+    if (center == "" || course == "" || day == "" || time == "") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    var booking = center + " - " + course + " - " + day + " - " + time;
+    localStorage.setItem("booking", booking);
+
+    alert("Booking Saved Successfully");
+}
+
+function showBookings() {
+    var saved = localStorage.getItem("booking");
+
+    if (saved == null) {
+        alert("No bookings found");
+    } else {
+        var box = document.getElementById("bookingList");
+        box.style.display = "block";
+        box.innerHTML = saved;
+    }
+}
+</script>
+
+</body>
+</html>
